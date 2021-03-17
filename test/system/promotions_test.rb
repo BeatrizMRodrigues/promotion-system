@@ -2,7 +2,6 @@ require 'application_system_test_case'
 
 class PromotionsTest < ApplicationSystemTestCase
   test 'view promotions' do
-    #arrange
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
@@ -10,11 +9,10 @@ class PromotionsTest < ApplicationSystemTestCase
                       description: 'Promoção de Cyber Monday',
                       code: 'CYBER15', discount_rate: 15,
                       expiration_date: '22/12/2033')
-    #act
+    
     visit root_path
     click_on 'Promoções'
 
-    #assert
     assert_text 'Natal'
     assert_text 'Promoção de Natal'
     assert_text '10,00%'
