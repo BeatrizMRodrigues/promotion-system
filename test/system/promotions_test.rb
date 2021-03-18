@@ -124,7 +124,7 @@ class PromotionsTest < ApplicationSystemTestCase
     assert_text '22/02/2022'
     assert_text 'Voltar'
   end
-
+  ###### ATIVIDADE 02 - DELETAR PROMOÇÃO #######
   test 'delete promotion' do
     Promotion.create!(name: 'Halloween', description: 'Promoção de Halloween',
                       code: 'HALLOWEEN15', discount_rate: 15, coupon_quantity: 150,
@@ -137,4 +137,35 @@ class PromotionsTest < ApplicationSystemTestCase
 
     assert_current_path root_path
   end
+
+  ######### SESSÃO QUINTA FEIRA #######
+  test 'create and attributes cannot be blank' do
+    visit root_path
+    click_on 'Promoções'
+    click_on 'Registrar uma promoção'
+    fill_in 'Nome', with: ''
+    fill_in 'Descrição', with: ''
+    fill_in 'Código', with: ''
+    fill_in 'Desconto', with: ''
+    fill_in 'Quantidade de cupons', with: ''
+    fill_in 'Data de término', with: ''
+    click_on 'Criar promoção'
+
+    assert_text 'não pode ficar em branco', count: 5
+  end
+
+  test 'create and code must be unique' do
+    Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                      expiration_date: '22/12/2033')
+
+    visit root_path
+    click_on 'Promoções'
+    click_on 'Registrar uma promoção'
+    fill_in 'Nome', with: 'Natal'
+    fill_in 'Código', with: 'NATAL10'
+    click_on 'Criar promoção'
+
+    assert_text 'deve ser único', count: 2
+end
 end
