@@ -124,4 +124,17 @@ class PromotionsTest < ApplicationSystemTestCase
     assert_text '22/02/2022'
     assert_text 'Voltar'
   end
+
+  test 'delete promotion' do
+    Promotion.create!(name: 'Halloween', description: 'Promoção de Halloween',
+                      code: 'HALLOWEEN15', discount_rate: 15, coupon_quantity: 150,
+                      expiration_date: '01/11/2022')
+    
+    visit root_path
+    click_on 'Promoções'
+    click_on 'Halloween'
+    click_on 'Apagar promoção'
+
+    assert_current_path root_path
+  end
 end
