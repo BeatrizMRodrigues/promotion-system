@@ -114,5 +114,14 @@ class PromotionsTest < ApplicationSystemTestCase
     fill_in 'Quantidade de cupons', with: '250'
     fill_in 'Data de término', with: '22/02/2022'
     click_on 'Salvar'
+
+    assert_current_path promotion_path(Promotion.last)
+    assert_text 'Carnaval'
+    assert_text 'Promoção de carnaval'
+    assert_text 'CARNA25'
+    assert_text '25,00%'
+    assert_text '250'
+    assert_text '22/02/2022'
+    assert_text 'Voltar'
   end
 end
