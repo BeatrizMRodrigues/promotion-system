@@ -1,0 +1,12 @@
+<h1>Categoria de Produtos</h1>
+
+<ul>
+<% @product_categories.each do |category|%>
+<li>
+<%= category.name%>
+</li>
+<li>
+<%= category.code%>
+</li>
+<% end %>
+</ul>
