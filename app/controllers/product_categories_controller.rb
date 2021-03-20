@@ -29,4 +29,10 @@ class ProductCategoriesController < ApplicationController
         @product_category = ProductCategory.update(params.require(:product_category).permit(:name, :code))
         redirect_to @product_category
     end
+
+    def destroy
+        @product_category = ProductCategory.find(params[:id])
+        @product_category.destroy
+        redirect_to root_path
+    end
 end

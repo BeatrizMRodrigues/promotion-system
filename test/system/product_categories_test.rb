@@ -62,4 +62,15 @@ class ProductCategoriesTest < ApplicationSystemTestCase
      assert_text 'SEG'
      assert_link 'Voltar'
     end
+
+    test 'delete category' do
+     ProductCategory.create!(name: 'Produto AntiFraude', 
+        code: 'ANTIFRA')
+
+     visit root_path
+     click_on 'Categorias'
+     click_on 'Apagar categoria'
+
+     assert_current_path root_path
+    end
 end
