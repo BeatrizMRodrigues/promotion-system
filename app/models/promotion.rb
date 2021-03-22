@@ -7,9 +7,15 @@ class Promotion < ApplicationRecord
     validates :name, :code, uniqueness: {message: 'deve ser único'}
 
     def generate_coupons!
-     return unless coupons.empty?
+     return if coupons?
         (1..coupon_quantity).each do |number|
             coupons.create!(code: "#{code}-#{'%04d' % number}")
         end
+    end
+
+    #TODO: fazer testes para esse método
+
+    def coupons?
+        coupons.any?
     end
 end
