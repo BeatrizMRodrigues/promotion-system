@@ -1,0 +1,46 @@
+/* CORES IUGU:
+  Cinza: 72 72 72
+  Azul:  27 170 204
+  Azul+: 27 144 191
+  Azul-: 107 200 222
+  Vermelho: 226 68 50
+  Preto: 38 38 38
+*/
+
+* {
+  margin:0;
+  padding: 0;
+  font-size: 100%;
+  border: none;
+  outline: none;
+  font-weight: 300;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  background-color: rgb(250,250,250);
+  color: rgb(72,72,72)
+}
+
+ul {
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(27,170,204);
+}
+
+.container {
+  width: 100%;
+  float: left;
+  padding: 3% 4%;
+  text-align: center;
+}
+
+h1 {
+  color: rgb(38,38,38);
+  font-size: 2em;
+}
+
