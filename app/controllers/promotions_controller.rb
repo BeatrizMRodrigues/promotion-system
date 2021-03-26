@@ -1,4 +1,5 @@
 class PromotionsController < ApplicationController
+    before_action :authenticate_user!, only: %i[index show create edit update destroy]
     before_action :set_promotion, only: %i[show generate_coupons edit update destroy]
 
     def index
@@ -52,4 +53,7 @@ class PromotionsController < ApplicationController
             @promotion = Promotion.find(params[:id])
         end
 
+        def authenticate_user
+            redirect_to '/login' unless user_signed_in?
+        end
 end

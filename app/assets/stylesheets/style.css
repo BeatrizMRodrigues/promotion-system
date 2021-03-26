@@ -31,6 +31,9 @@ a{
   text-decoration: none;
   color: rgb(27,170,204);
 }
+a:hover{
+  color: rgb(27, 144, 191);
+}
 
 .container {
   width: 100%;
@@ -40,7 +43,49 @@ a{
 }
 
 h1 {
-  color: rgb(38,38,38);
+  color: rgb(38, 38, 38);
   font-size: 2em;
 }
 
+.coupons {
+  border-collapse: collapse;
+}
+
+.coupons td, .coupons th {
+  border: 1px solid rgb(107, 200, 222);
+  padding: 8px;
+}
+
+.coupons a {
+  color: rgb(226, 68, 50)
+}
+.coupons tr:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+.coupons th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color:rgb(107, 200, 222);
+  color: rgb(250, 250, 250);
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+dl{
+  text-align: left;
+ 
+}
+dt {
+  font-weight: bold;
+  padding: 1%;
+}
+small {
+  font-size: smaller;
+  font-weight: bold;
+}

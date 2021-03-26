@@ -1,8 +1,8 @@
 <%= link_to 'Voltar', promotions_path%>
 <%= link_to 'Editar promoção', edit_promotion_path%>
 <%= link_to 'Apagar promoção', promotion_path(@promotion), method: :delete%>
-
-<h3><%= @promotion.name %></h3>
+<div class='container'>
+<h1><%= @promotion.name %></h1>
 <dl>
     <dt><%= Promotion.human_attribute_name(:description)%></dt>
     <dd><%= @promotion.description %></dd>
@@ -15,12 +15,24 @@
     <dt>Quantidade de cupons</dt>
     <dd><%= @promotion.coupon_quantity %></dd>
 </dl>
+</div>
+<div>
+<table class='coupons center'>
+<tr>
+<th> Cupom </th>
+<th> Ação </th>
 
+</tr>
+<tr>
 <% if @promotion.coupons.empty? %>
-<%= link_to t('.generate_coupons'), generate_coupons_promotion_path(@promotion), method: :post %>
+<td><%= link_to t('.generate_coupons'), generate_coupons_promotion_path(@promotion), method: :post %></td>
 <% end %>
 
 <% @promotion.coupons.each do |coupon|%>
-<p> <%= "#{coupon.code} #{'(desabilitado)' if coupon.disabled? }" %> </p>
-<%= link_to 'Desabilitar', disable_coupon_path(coupon), method: :post %>
+<td><p> <%= "#{coupon.code} #{'(desabilitado)' if coupon.disabled? }" %> </p></td>
+<td><%= link_to 'Desabilitar', disable_coupon_path(coupon), method: :post %></td>
+</tr>
 <% end %>
+
+</table>
+</div>

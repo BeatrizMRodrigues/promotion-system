@@ -12,15 +12,17 @@
 
   <body class='container' >
   <nav>
+  <ul>
     <% if user_signed_in? %>
-     <%= current_user.email%>
-     <%= link_to 'Sair', '#' %>
-    <%= link_to 'Promoções', promotions_path%>
-    <%= link_to 'Categorias', product_categories_path%>
+    <p> Olá! <%= current_user.email%> </p>
+      <l1><%= link_to 'Promoções', promotions_path%></l1>
+      <l1><%= link_to 'Categorias', product_categories_path%></l1>
+      <l1><%= link_to 'Sair', '#' %></l1>
     <% else %>
-      <%= link_to 'Cadastrar', new_user_registration_path %>
-      <%= link_to 'Entrar', new_user_session_path%>
+      <l1><%= link_to 'Cadastrar', new_user_registration_path %></l1>
+      <l1><%= link_to 'Entrar', new_user_session_path%></l1>
       <% end %>
+      </ul>
   </nav>
   <p><%= flash[:notice] %></p>
   <p><%= flash[:alert] %></p>

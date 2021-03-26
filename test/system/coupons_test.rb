@@ -11,6 +11,7 @@ class CouponsTest < ApplicationSystemTestCase
 
         coupon = Coupon.create!(code: 'NATAL10-0001', promotion: promotion)
 
+        login_user
         visit promotion_path(promotion)
         click_on 'Desabilitar'
 

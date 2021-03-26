@@ -5,15 +5,16 @@ class ProductCategoriesTest < ApplicationSystemTestCase
     test 'view categories' do
      ProductCategory.create!(name: 'Produto AntiFraude', 
                             code: 'ANTIFRA')
+      login_user
+      visit root_path
+      click_on 'Categorias'
 
-     visit root_path
-     click_on 'Categorias'
-
-     assert_text 'Produto AntiFraude'
-     assert_text 'ANTIFRA'
+      assert_text 'Produto AntiFraude'
+      assert_text 'ANTIFRA'
     end
 
     test 'no category are available' do
+     login_user
      visit root_path
      click_on 'Categorias'
 
@@ -23,7 +24,7 @@ class ProductCategoriesTest < ApplicationSystemTestCase
     test 'view category and return to home page' do 
      ProductCategory.create!(name: 'Produto AntiFraude', 
                             code: 'ANTIFRA')
-    
+     login_user
      visit root_path
      click_on 'Categorias'
      click_on 'Voltar'
@@ -32,6 +33,7 @@ class ProductCategoriesTest < ApplicationSystemTestCase
     end
 
     test 'create category' do 
+     login_user
      visit root_path
      click_on 'Categorias'
      click_on 'Cadastrar nova categoria'
@@ -48,7 +50,7 @@ class ProductCategoriesTest < ApplicationSystemTestCase
     test 'edit category' do 
      ProductCategory.create!(name: 'Produto AntiFraude', 
         code: 'ANTIFRA')
-
+     login_user
      visit root_path
      click_on 'Categorias'
      click_on 'Editar categoria'
@@ -66,7 +68,7 @@ class ProductCategoriesTest < ApplicationSystemTestCase
     test 'delete category' do
      ProductCategory.create!(name: 'Produto AntiFraude', 
         code: 'ANTIFRA')
-
+     login_user
      visit root_path
      click_on 'Categorias'
      click_on 'Apagar categoria'
