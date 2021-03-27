@@ -222,6 +222,4 @@ class PromotionsTest < ApplicationSystemTestCase
 
     assert_current_path new_user_session_path
   end
-
-  
 end

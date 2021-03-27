@@ -30,7 +30,11 @@
 
 <% @promotion.coupons.each do |coupon|%>
 <td><p> <%= "#{coupon.code} #{'(desabilitado)' if coupon.disabled? }" %> </p></td>
+<% if coupon.active? %>
 <td><%= link_to 'Desabilitar', disable_coupon_path(coupon), method: :post %></td>
+<% else %>
+<td><%= link_to 'Habilitar', active_coupon_path(coupon), method: :post %></td>
+<% end %>
 </tr>
 <% end %>
 

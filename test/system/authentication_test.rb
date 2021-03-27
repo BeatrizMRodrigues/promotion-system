@@ -16,11 +16,6 @@ require 'application_system_test_case'
      assert_link 'Sair'
      assert_no_link 'Cadastrar'
      assert_current_path root_path
-     # não logar e ir para o login?
-     # confirmar a conta?
-     # mandar email?
-     # validar a qualidade da senha?
-     # captcha não sou um robô
    end
 
    # test 'user sign up' do
@@ -57,4 +52,8 @@ require 'application_system_test_case'
    # TODO: Teste o editar o usuário
    # TODO: I18n do user
    # TODO: incluir name no user
+   # TODO: confirmar a conta
+   # TODO: mandar email
+   # TODO: validar a qualidade da senha
+   # TODO: captcha não sou um robô
  end
