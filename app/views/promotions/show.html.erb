@@ -2,7 +2,7 @@
 <%= link_to 'Editar promoção', edit_promotion_path%>
 <%= link_to 'Apagar promoção', promotion_path(@promotion), method: :delete%>
 <div class='container'>
-<h1><%= @promotion.name %></h1>
+<h3><%= @promotion.name %></h3>
 <dl>
     <dt><%= Promotion.human_attribute_name(:description)%></dt>
     <dd><%= @promotion.description %></dd>

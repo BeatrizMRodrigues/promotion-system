@@ -14,7 +14,6 @@ class Promotion < ApplicationRecord
     end
 
     #TODO: fazer testes para esse método
-
     def coupons?
         coupons.any?
     end

@@ -3,6 +3,6 @@ class HomeController < ApplicationController
     end
 
     def search
-      @promotions = Promotion.where('name = ?', params[:query])
+      @resultados = Promotion.where('name = ?', params[:query])
     end
 end

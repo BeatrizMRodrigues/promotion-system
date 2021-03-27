@@ -27,11 +27,7 @@
   <p><%= flash[:notice] %></p>
   <p><%= flash[:alert] %></p>
 
-  <%= form_with url: search_path, method: :get do |f|%>
-    <%= f.label :query, 'Buscar' %>
-    <%= f.text_field :query %>
-    <%= f.submit 'Pesquisar' %>
-<% end %>
+  
     <%= yield %>
   </body>
 </html>
