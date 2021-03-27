@@ -17,7 +17,7 @@
     <p> Olá! <%= current_user.email%> </p>
       <l1><%= link_to 'Promoções', promotions_path%></l1>
       <l1><%= link_to 'Categorias', product_categories_path%></l1>
-      <l1><%= link_to 'Sair', '#' %></l1>
+      <l1><%= link_to 'Sair', destroy_user_session_path, method: :delete%></l1>
     <% else %>
       <l1><%= link_to 'Cadastrar', new_user_registration_path %></l1>
       <l1><%= link_to 'Entrar', new_user_session_path%></l1>

@@ -45,7 +45,17 @@ require 'application_system_test_case'
      assert_no_link 'Entrar'
    end
 
-   # TODO: Teste de sair
+   test 'user sign out' do
+    login_user
+    visit root_path
+    click_on 'Sair'
+
+    assert_no_link 'Sair'
+    assert_text 'Entrar'
+    assert_no_text 'Olá'
+   end
+
+   
    # TODO: Teste de falha ao registrar
    # TODO: Teste de falha ao logar
    # TODO: Teste o recuperar senha
