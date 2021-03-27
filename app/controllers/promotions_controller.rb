@@ -40,6 +40,10 @@ class PromotionsController < ApplicationController
         redirect_to @promotion, notice: t('.success')
     end
 
+    def search
+        
+    end
+
     private
 
         def promotion_params

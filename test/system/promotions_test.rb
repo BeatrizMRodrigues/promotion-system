@@ -222,4 +222,26 @@ class PromotionsTest < ApplicationSystemTestCase
 
     assert_current_path new_user_session_path
   end
+
+  ####### TESTE DE BUSCA #######  
+
+  test 'search for exact term' do 
+    Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+                      code: 'NATAL10', discount_rate: 10,
+                      coupon_quantity: 20, expiration_date: '25/12/2023')
+
+    Promotion.create!(name: 'Carnaval', description: 'Promoção de Carnaval',
+                      code: 'CARNA15', discount_rate: 15,
+                      coupon_quantity: 20, expiration_date: '25/02/2023')
+
+
+    login_user                             
+    visit root_path
+    fill_in 'Buscar', with: 'Natal'
+    click_on 'Pesquisar'
+
+    assert_text 'Natal'
+    assert_no_text 'Carnaval'
+  end
+
 end

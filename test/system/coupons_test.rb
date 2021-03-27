@@ -19,7 +19,7 @@ class CouponsTest < ApplicationSystemTestCase
         assert_text "#{coupon.code} (desabilitado)"
     end
 
-    test 'active a coupon' do
+    test 'activate a coupon' do
         promotion = Promotion.create!(name: 'Natal', 
                                     description: 'Promoção de Natal',
                                     code: 'NATAL10', 
@@ -36,6 +36,5 @@ class CouponsTest < ApplicationSystemTestCase
 
         assert_text "Cupom #{coupon.code} habilitado com sucesso"
         assert_no_text "#{coupon.code} (desabilitado)"
-
     end
 end
