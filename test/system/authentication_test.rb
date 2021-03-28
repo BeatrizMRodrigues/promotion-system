@@ -66,7 +66,6 @@ require 'application_system_test_case'
 
     assert_no_text 'Login efetuado com sucesso!'
     assert_text 'Email ou senha inválida.'
-
    end
 
    test 'password complexity' do 
@@ -107,6 +106,5 @@ require 'application_system_test_case'
    # TODO: incluir name no user
    # TODO: confirmar a conta
    # TODO: mandar email
-   # TODO: validar a qualidade da senha
    # TODO: captcha não sou um robô
  end

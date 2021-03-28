@@ -8,3 +8,8 @@ import Turbolinks from "turbolinks"
 
 Rails.start()
 Turbolinks.start()
+
+
+
+import "bootstrap";
+import "../stylesheets/application";
