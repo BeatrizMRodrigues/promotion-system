@@ -1,7 +1,7 @@
 <%= link_to 'Voltar', promotions_path%>
 <%= link_to 'Editar promoção', edit_promotion_path%>
 <%= link_to 'Apagar promoção', promotion_path(@promotion), method: :delete%>
-<div class='container'>
+<div>
 <h3><%= @promotion.name %></h3>
 <dl>
     <dt><%= Promotion.human_attribute_name(:description)%></dt>
@@ -16,6 +16,7 @@
     <dd><%= @promotion.coupon_quantity %></dd>
 </dl>
 </div>
+
 <div>
 <table class='coupons center'>
 <tr>

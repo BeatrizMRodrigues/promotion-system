@@ -6,9 +6,12 @@
     <h3>Nenhuma promoção cadastrada</h3>
 <%end%>
 
+
+
 <% @promotions.each do |promotion| %>
-<h3><%= link_to promotion.name, promotion %></h3>
-<dl>
+<dl class="card">
+<h3 class="card-header"><%= link_to promotion.name, promotion %></h3>
+
     <dt>Descrição</dt>
     <dd><%= promotion.description %></dd>
     <dt>Desconto <small>em porcentagem</small></dt>
