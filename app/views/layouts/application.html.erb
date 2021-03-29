@@ -15,12 +15,12 @@
   <ul>
     <% if user_signed_in? %>
     <p> Olá! <%= current_user.email%> </p>
-      <l1><%= link_to 'Promoções', promotions_path%></l1>
-      <l1><%= link_to 'Categorias', product_categories_path%></l1>
-      <l1><%= link_to 'Sair', destroy_user_session_path, method: :delete%></l1>
+      <li><%= link_to 'Promoções', promotions_path%></li>
+      <li><%= link_to 'Categorias', product_categories_path%></li>
+      <li><%= link_to 'Sair', destroy_user_session_path, method: :delete%></li>
     <% else %>
-      <l1><%= link_to 'Cadastrar', new_user_registration_path %></l1>
-      <l1><%= link_to 'Entrar', new_user_session_path%></l1>
+      <li><%= link_to 'Cadastrar', new_user_registration_path %></li>
+      <li><%= link_to 'Entrar', new_user_session_path%></li>
       <% end %>
       </ul>
   </nav>
