@@ -5,7 +5,7 @@
 
 <% if @product_categories.empty? %>
     <h3>Nenhuma categoria cadastrada</h3>
-<%end%>
+<%else%>
 
 <ul>
 <% @product_categories.each do |category|%>
@@ -22,4 +22,5 @@
 <%= link_to 'Apagar categoria', product_category_path(category), method: :delete%>
 </li>
 <% end %>
+<%end%>
 </ul>

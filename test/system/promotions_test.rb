@@ -243,5 +243,4 @@ class PromotionsTest < ApplicationSystemTestCase
     assert_text 'Natal'
     assert_no_text 'Carnaval'
   end
-
 end
