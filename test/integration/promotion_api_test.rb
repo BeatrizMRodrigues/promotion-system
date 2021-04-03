@@ -7,7 +7,7 @@ class PromotionsAPI < ActionDispatch::IntegrationTest
                                   description: 'Promoção de Natal',
                                   code: 'NATAL10', discount_rate: 10,
                                   coupon_quantity: 10,
-                                  expiration_date: '25/12/2021')
+                                  expiration_date: '25/12/2021', user: user)
 
     coupon = Coupon.create!(code: 'NATAL10-0001', promotion: promotion)
 
