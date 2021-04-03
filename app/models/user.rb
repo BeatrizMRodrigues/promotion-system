@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :promotions
+  has_many :promotion_approvals
+  has_many :approved_promotions, through: :promotion_approvals, source: :promotion
+
   validate :password_complexity
   def password_complexity
   # Regexp extracted from https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
