@@ -12,7 +12,7 @@ class PromotionsAPI < ActionDispatch::IntegrationTest
     coupon = Coupon.create!(code: 'NATAL10-0001', promotion: promotion)
 
     get "/api/v1/coupons/#{coupon.code}"
-
+    
     assert_response :success
     body = JSON.parse(response.body, symbolize_names: true)
     assert_equal coupon.code, body[:code]

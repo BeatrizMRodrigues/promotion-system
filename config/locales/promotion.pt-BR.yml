@@ -18,3 +18,5 @@ pt-BR:
       generate_coupons: Gerar cupons
     generate_coupons:
       success: Cupons gerados com sucesso
+    approve: 
+      success: Ação não permitida

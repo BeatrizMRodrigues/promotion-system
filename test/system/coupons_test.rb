@@ -1,40 +1,40 @@
 require 'application_system_test_case'
 
 class CouponsTest < ApplicationSystemTestCase
-    test 'disable a coupon' do 
-        user = login_user
-        promotion = Promotion.create!(name: 'Natal', 
-                                    description: 'Promoção de Natal',
-                                    code: 'NATAL10', 
-                                    discount_rate: 10, 
-                                    coupon_quantity: 100,
-                                    expiration_date: '22/12/2033', user: user)
+  test 'disable a coupon' do 
+    user = login_user
+    promotion = Promotion.create!(name: 'Natal', 
+                                  description: 'Promoção de Natal',
+                                  code: 'NATAL10',                                     
+                                  discount_rate: 10, 
+                                  coupon_quantity: 100,
+                                  expiration_date: '22/12/2033', user: user)
 
-        coupon = Coupon.create!(code: 'NATAL10-0001', promotion: promotion)
+    coupon = Coupon.create!(code: 'NATAL10-0001', promotion: promotion)
 
-        visit promotion_path(promotion)
-        click_on 'Desabilitar'
+    visit promotion_path(promotion)
+    click_on 'Desabilitar'
 
-        assert_text "Cupom #{coupon.code} desabilitado com sucesso"
-        assert_text "#{coupon.code} (desabilitado)"
-    end
+    assert_text "Cupom #{coupon.code} desabilitado com sucesso"
+    assert_text "#{coupon.code} (desabilitado)"
+  end
 
-    test 'activate a coupon' do
-        user = login_user
-        promotion = Promotion.create!(name: 'Natal', 
-                                    description: 'Promoção de Natal',
-                                    code: 'NATAL10', 
-                                    discount_rate: 10, 
-                                    coupon_quantity: 100,
-                                    expiration_date: '22/12/2033', user: user)
+  test 'activate a coupon' do
+    user = login_user
+    promotion = Promotion.create!(name: 'Natal', 
+                                  description: 'Promoção de Natal',
+                                  code: 'NATAL10', 
+                                  discount_rate: 10, 
+                                  coupon_quantity: 100,
+                                  expiration_date: '22/12/2033', user: user)
 
-        coupon = Coupon.create!(code: 'NATAL10-0001', promotion: promotion)
+    coupon = Coupon.create!(code: 'NATAL10-0001', promotion: promotion)
 
-        visit promotion_path(promotion)
-        click_on 'Desabilitar'
-        click_on 'Habilitar'
+    visit promotion_path(promotion)
+    click_on 'Desabilitar'
+    click_on 'Habilitar'
 
-        assert_text "Cupom #{coupon.code} habilitado com sucesso"
-        assert_no_text "#{coupon.code} (desabilitado)"
-    end
+    assert_text "Cupom #{coupon.code} habilitado com sucesso"
+    assert_no_text "#{coupon.code} (desabilitado)"
+  end
 end

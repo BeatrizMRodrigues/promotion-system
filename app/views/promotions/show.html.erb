@@ -20,13 +20,15 @@
 <% if @promotion.approved? %>
 <p>Aprovada por <%= @promotion.approver.email %></p>
 <% if @promotion.coupons.empty? %>
-<td><%= link_to t('.generate_coupons'), generate_coupons_promotion_path(@promotion), method: :post %></td>
+<p><%= link_to t('.generate_coupons'), generate_coupons_promotion_path(@promotion), method: :post %></p>
 <% end %>
 <% elsif @promotion.can_approve?(current_user) %>
 <%= link_to 'Aprovar', approve_promotion_path(@promotion), method: :post, data: { confirm: 'Tem certeza? Essa ação não pode ser desfeita'}%>
 <% end %>
+
+<% if @promotion.coupons?%>
 <div>
-<table class='coupons center'>
+<table>
 <tr>
 <th> Cupom </th>
 <th> Ação </th>
@@ -44,3 +46,4 @@
 
 </table>
 </div>
+<%end%>

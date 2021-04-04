@@ -55,7 +55,7 @@ class PromotionTest < ActiveSupport::TestCase
                       expiration_date: '22/12/2033', user: user)
     Coupon.create!(code: 'BLABLABLA', promotion: promotion)
     assert_no_difference 'Coupon.count' do
-      promotion.generate_coupons!
+    promotion.generate_coupons!
     end
   end
 end

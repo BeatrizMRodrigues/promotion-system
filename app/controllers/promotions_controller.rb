@@ -68,6 +68,6 @@ class PromotionsController < ApplicationController
 
         def can_be_approved 
             redirect_to @promotion,
-            alert: 'Ação não permitida' unless @promotion.can_approve?(current_user)
+            alert: t('.success') unless @promotion.can_approve?(current_user)
         end
 end
