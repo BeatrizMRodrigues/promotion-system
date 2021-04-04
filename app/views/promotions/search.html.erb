@@ -1,0 +1,7 @@
+<h3> Resultados <h3>
+<%= t ('.result'), count: @promotions.count, term: @term %>
+<ul>
+  <% @promotions.each do |resultado| %>
+  <li><%= resultado.name%></li>
+  <% end %>
+</ul>

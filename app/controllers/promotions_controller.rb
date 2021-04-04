@@ -42,6 +42,8 @@ class PromotionsController < ApplicationController
     end
 
     def search
+        @term = params[:query]
+        @promotions = Promotion.search(@term)
     end
 
     def approve

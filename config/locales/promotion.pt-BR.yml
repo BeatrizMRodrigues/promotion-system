@@ -20,3 +20,8 @@ pt-BR:
       success: Cupons gerados com sucesso
     approve: 
       success: Ação não permitida
+    search:
+      result:
+        zero: "Nenhuma promoção encontrada para o termo: %{term}"
+        one: "%{count} promoção encontrada para o termo: %{term}"
+        other: "%{count} promoções encontradas para o termo: %{term}"
