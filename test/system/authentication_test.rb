@@ -4,6 +4,7 @@ require 'application_system_test_case'
    test 'user sign up' do
      visit root_path
      click_on 'Cadastrar'
+     fill_in 'Username', with: 'JaneDoe'
      fill_in 'Email', with: 'jane.doe@iugu.com.br'
      fill_in 'Senha', with: 'Password12*'
      fill_in 'Confirmação de senha', with: 'Password12*'
@@ -30,11 +31,11 @@ require 'application_system_test_case'
     end
 
    test 'user sign in' do
-     user = User.create!(email: 'jane.doe@iugu.com.br', password: 'Password12*')
+     user = User.create!(username: 'JaneDoe', email: 'jane.doe@iugu.com.br', password: 'Password12*')
 
      visit root_path
      click_on 'Entrar'
-     fill_in 'Login', with: user.email
+     fill_in 'Login', with: user.username
      fill_in 'Senha', with: user.password
      click_on 'Log in'
 
