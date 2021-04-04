@@ -18,32 +18,31 @@
 </div>
 
 <% if @promotion.approved? %>
-<p>Aprovada por <%= @promotion.approver.email %></p>
-<% if @promotion.coupons.empty? %>
-<p><%= link_to t('.generate_coupons'), generate_coupons_promotion_path(@promotion), method: :post %></p>
-<% end %>
-<% elsif @promotion.can_approve?(current_user) %>
-<%= link_to 'Aprovar', approve_promotion_path(@promotion), method: :post, data: { confirm: 'Tem certeza? Essa ação não pode ser desfeita'}%>
+  <p>Aprovada por <%= @promotion.approver.email %></p>
+  <% if @promotion.coupons.empty? %>
+    <p><%= link_to t('.generate_coupons'), generate_coupons_promotion_path(@promotion), method: :post %></p>
+  <% end %>
+  <% elsif @promotion.can_approve?(current_user) %>
+    <%= link_to 'Aprovar', approve_promotion_path(@promotion), method: :post, data: { confirm: 'Tem certeza? Essa ação não pode ser desfeita'}%>
 <% end %>
 
 <% if @promotion.coupons?%>
-<div>
-<table>
-<tr>
-<th> Cupom </th>
-<th> Ação </th>
-</tr>
-<tr>
-<% @promotion.coupons.each do |coupon|%>
-<td><p> <%= "#{coupon.code} #{'(desabilitado)' if coupon.disabled? }" %> </p></td>
-<% if coupon.active? %>
-<td><%= link_to 'Desabilitar', disable_coupon_path(coupon), method: :post %></td>
-<% else %>
-<td><%= link_to 'Habilitar', active_coupon_path(coupon), method: :post %></td>
-<% end %>
-</tr>
-<% end %>
-
-</table>
-</div>
+    <div>
+    <table>
+      <tr>
+        <th> Cupom </th>
+        <th> Ação </th>
+      </tr>
+      <tr>
+      <% @promotion.coupons.each do |coupon|%>
+        <td><p> <%= "#{coupon.code} #{'(desabilitado)' if coupon.disabled? }" %> </p></td>
+          <% if coupon.active? %>
+        <td><%= link_to 'Desabilitar', disable_coupon_path(coupon), method: :post %></td>
+          <% else %>
+        <td><%= link_to 'Habilitar', active_coupon_path(coupon), method: :post %></td>
+          <% end %>
+    </tr>
+    <% end %>
+  </table>
+  </div>
 <%end%>
