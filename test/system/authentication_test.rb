@@ -4,7 +4,7 @@ require 'application_system_test_case'
    test 'user sign up' do
      visit root_path
      click_on 'Cadastrar'
-     fill_in 'Username', with: 'JaneDoe'
+     fill_in 'Username', with: 'Jane'
      fill_in 'Email', with: 'jane.doe@iugu.com.br'
      fill_in 'Senha', with: 'Password12*'
      fill_in 'Confirmação de senha', with: 'Password12*'
@@ -13,7 +13,7 @@ require 'application_system_test_case'
      end
 
      assert_text 'Boas vindas! Cadastrou e entrou com sucesso'
-     assert_text 'jane.doe@iugu.com.br'
+     assert_text 'Jane'
      assert_link 'Sair'
      assert_no_link 'Cadastrar'
      assert_current_path root_path
@@ -40,7 +40,7 @@ require 'application_system_test_case'
      click_on 'Log in'
 
      assert_text 'Login efetuado com sucesso!'
-     assert_text user.email
+     assert_text user.username
      assert_current_path root_path
      assert_link 'Sair'
      assert_no_link 'Entrar'
@@ -72,6 +72,7 @@ require 'application_system_test_case'
    test 'password complexity' do 
     visit root_path
     click_on 'Cadastrar'
+    fill_in 'Username', with: 'Jane'
     fill_in 'Email', with: 'jane.doe@iugu.com.br'
     fill_in 'Senha', with: 'Password12*'
     fill_in 'Confirmação de senha', with: 'Password12*'
@@ -80,7 +81,7 @@ require 'application_system_test_case'
     end
 
     assert_text 'Boas vindas! Cadastrou e entrou com sucesso'
-    assert_text 'jane.doe@iugu.com.br'
+    assert_text 'Jane'
     assert_link 'Sair'
     assert_no_link 'Cadastrar'
     assert_current_path root_path
@@ -89,6 +90,7 @@ require 'application_system_test_case'
    test 'password complexity failures' do 
     visit root_path
     click_on 'Cadastrar'
+    fill_in 'Username', with: 'Jane'
     fill_in 'Email', with: 'jane.doe@iugu.com.br'
     fill_in 'Senha', with: 'password'
     fill_in 'Confirmação de senha', with: 'password'
@@ -97,14 +99,42 @@ require 'application_system_test_case'
     end
 
     assert_no_text 'Boas vindas! Cadastrou e entrou com sucesso'
-    assert_no_text 'jane.doe@iugu.com.br'
+    assert_no_text 'Jane'
     assert_no_link 'Sair'
     assert_text 'A senha deve conter no mínimo 8 caracteres, com pelo menos 1 letra maiúscula, 1 letra minúscula e 1 caractere especial'
    end
-   # TODO: Teste o recuperar senha
-   # TODO: Teste o editar o usuário
+
+   test 'user forgot password' do
+    user = User.create!(username: 'Jane', email: 'jane.doe@iugu.com.br', password: 'Password12*')
+
+    visit root_path
+    click_on 'Entrar'
+    fill_in 'Login', with: 'janedoe@iugu.com.br'
+    fill_in 'Senha', with: '123456'
+    click_on 'Forgot your password?'
+    
+    token = user.send_reset_password_instructions
+    visit edit_user_password_path(reset_password_token: token)
+
+    assert_no_text 'Login efetuado com sucesso!'
+    assert_text 'New password'
+   end
+
+   test 'user edit password' do 
+    user = User.create!(username: 'Jane', email: 'jane.doe@iugu.com.br', password: 'Password12*')
+    token = user.send_reset_password_instructions
+    visit edit_user_password_path(reset_password_token: token)
+
+    fill_in 'New password', with: '1135*pP0'
+    fill_in 'Confirm new password', with: '1135*pP0'
+    click_on 'Change my password'
+
+    assert_text 'Jane'
+    assert_text 'Promoções'
+
+   end
+   
    # TODO: I18n do user
-   # TODO: Testar name no user
    # TODO: confirmar a conta
    # TODO: mandar email
    # TODO: captcha não sou um robô
