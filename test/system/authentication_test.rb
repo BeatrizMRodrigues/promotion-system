@@ -34,7 +34,7 @@ require 'application_system_test_case'
 
      visit root_path
      click_on 'Entrar'
-     fill_in 'Email', with: user.email
+     fill_in 'Login', with: user.email
      fill_in 'Senha', with: user.password
      click_on 'Log in'
 
@@ -60,12 +60,12 @@ require 'application_system_test_case'
 
     visit root_path
     click_on 'Entrar'
-    fill_in 'Email', with: 'janedoe@iugu.com.br'
+    fill_in 'Login', with: 'janedoe@iugu.com.br'
     fill_in 'Senha', with: '123456'
     click_on 'Log in'
 
     assert_no_text 'Login efetuado com sucesso!'
-    assert_text 'Email ou senha inválida.'
+    assert_text 'Login ou senha inválida.'
    end
 
    test 'password complexity' do 
@@ -103,7 +103,7 @@ require 'application_system_test_case'
    # TODO: Teste o recuperar senha
    # TODO: Teste o editar o usuário
    # TODO: I18n do user
-   # TODO: incluir name no user
+   # TODO: Testar name no user
    # TODO: confirmar a conta
    # TODO: mandar email
    # TODO: captcha não sou um robô
