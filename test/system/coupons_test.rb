@@ -52,7 +52,9 @@ class CouponsTest < ApplicationSystemTestCase
     fill_in 'Buscar', with: 'NATAL10-0002'
     click_on 'Pesquisar'
 
-    assert_text 'NATAL10-0002'
+    assert_text coupon02.code
+    assert_text coupon02.status
+    assert_text 'Promoção de Natal'
     assert_no_text 'NATAL10-0001'
     assert_no_text 'NATAL10-0003'
   end
