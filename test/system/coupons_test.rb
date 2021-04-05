@@ -37,4 +37,23 @@ class CouponsTest < ApplicationSystemTestCase
     assert_text "Cupom #{coupon.code} habilitado com sucesso"
     assert_no_text "#{coupon.code} (desabilitado)"
   end
+
+  test 'search coupon' do 
+    user = login_user 
+    promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+                      code: 'NATAL10', discount_rate: 10,
+                      coupon_quantity: 20, expiration_date: '25/12/2023', user: user)
+    
+    coupon01 = Coupon.create!(code: 'NATAL10-0001', promotion: promotion)
+    coupon02 = Coupon.create!(code: 'NATAL10-0002', promotion: promotion)
+    coupon03 = Coupon.create!(code: 'NATAL10-0003', promotion: promotion)
+                    
+    visit promotion_path(promotion)
+    fill_in 'Buscar', with: 'NATAL10-0002'
+    click_on 'Pesquisar'
+
+    assert_text 'NATAL10-0002'
+    assert_no_text 'NATAL10-0001'
+    assert_no_text 'NATAL10-0003'
+  end
 end
