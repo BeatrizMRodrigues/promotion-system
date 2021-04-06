@@ -1,8 +1,8 @@
 require 'application_system_test_case'
 
 class SearchPromotionsTest < ApplicationSystemTestCase
-  test 'search for exact term' do 
-    user = login_user 
+  test 'search for exact term' do
+    user = login_user
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10,
                       coupon_quantity: 20, expiration_date: '25/12/2023', user: user)
@@ -11,7 +11,6 @@ class SearchPromotionsTest < ApplicationSystemTestCase
                       code: 'CARNA15', discount_rate: 15,
                       coupon_quantity: 20, expiration_date: '25/02/2023', user: user)
 
-                            
     visit root_path
     click_on 'Promoções'
     fill_in 'Buscar', with: 'Natal'
@@ -30,7 +29,7 @@ class SearchPromotionsTest < ApplicationSystemTestCase
                              code: 'NATAL11', discount_rate: 10,
                              coupon_quantity: 100, expiration_date: '22/12/2033', user: user)
     cyber_monday = Promotion.create!(name: 'Cyber Monday', coupon_quantity: 90,
-                                     description: 'Promoção de Cyber Monday', code: 'CYBER15', 
+                                     description: 'Promoção de Cyber Monday', code: 'CYBER15',
                                      discount_rate: 15, expiration_date: '22/12/2033', user: user)
 
     visit root_path
@@ -74,8 +73,8 @@ class SearchPromotionsTest < ApplicationSystemTestCase
                                   coupon_quantity: 100,
                                   expiration_date: '22/12/2033', user: user)
     xmas = Promotion.create!(name: 'Natalina', description: 'Promoção de Natal',
-                            code: 'NATAL11', discount_rate: 10, coupon_quantity: 100,
-                            expiration_date: '22/12/2033', user: user)
+                             code: 'NATAL11', discount_rate: 10, coupon_quantity: 100,
+                             expiration_date: '22/12/2033', user: user)
     cyber_monday = Promotion.create!(name: 'Cyber Monday', coupon_quantity: 90,
                                      description: 'Promoção de Cyber Monday',
                                      code: 'CYBER15', discount_rate: 15,
@@ -91,5 +90,4 @@ class SearchPromotionsTest < ApplicationSystemTestCase
     refute_text cyber_monday.name
     assert_text 'Nenhuma promoção encontrada para o termo: test'
   end
-
 end

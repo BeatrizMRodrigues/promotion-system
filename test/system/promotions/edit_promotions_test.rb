@@ -1,12 +1,12 @@
 require 'application_system_test_case'
 
 class EditPromotionsTest < ApplicationSystemTestCase
-  test 'edit promotion' do 
+  test 'edit promotion' do
     user = login_user
     Promotion.create!(name: 'Carnaval', description: 'Promoção de carnaval',
                       code: 'CARNA20', discount_rate: 20, coupon_quantity: 200,
                       expiration_date: '20/02/2022', user: user)
-    
+
     visit root_path
     click_on 'Promoções'
     click_on 'Carnaval'

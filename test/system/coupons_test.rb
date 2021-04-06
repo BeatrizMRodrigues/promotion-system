@@ -1,12 +1,12 @@
 require 'application_system_test_case'
 
 class CouponsTest < ApplicationSystemTestCase
-  test 'disable a coupon' do 
+  test 'disable a coupon' do
     user = login_user
-    promotion = Promotion.create!(name: 'Natal', 
+    promotion = Promotion.create!(name: 'Natal',
                                   description: 'Promoção de Natal',
-                                  code: 'NATAL10',                                     
-                                  discount_rate: 10, 
+                                  code: 'NATAL10',
+                                  discount_rate: 10,
                                   coupon_quantity: 100,
                                   expiration_date: '22/12/2033', user: user)
 
@@ -21,10 +21,10 @@ class CouponsTest < ApplicationSystemTestCase
 
   test 'activate a coupon' do
     user = login_user
-    promotion = Promotion.create!(name: 'Natal', 
+    promotion = Promotion.create!(name: 'Natal',
                                   description: 'Promoção de Natal',
-                                  code: 'NATAL10', 
-                                  discount_rate: 10, 
+                                  code: 'NATAL10',
+                                  discount_rate: 10,
                                   coupon_quantity: 100,
                                   expiration_date: '22/12/2033', user: user)
 
@@ -38,16 +38,16 @@ class CouponsTest < ApplicationSystemTestCase
     assert_no_text "#{coupon.code} (desabilitado)"
   end
 
-  test 'search coupon' do 
-    user = login_user 
+  test 'search coupon' do
+    user = login_user
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
-                      code: 'NATAL10', discount_rate: 10,
-                      coupon_quantity: 20, expiration_date: '25/12/2023', user: user)
-    
+                                  code: 'NATAL10', discount_rate: 10,
+                                  coupon_quantity: 20, expiration_date: '25/12/2023', user: user)
+
     coupon01 = Coupon.create!(code: 'NATAL10-0001', promotion: promotion)
     coupon02 = Coupon.create!(code: 'NATAL10-0002', promotion: promotion)
     coupon03 = Coupon.create!(code: 'NATAL10-0003', promotion: promotion)
-                    
+
     visit promotion_path(promotion)
     fill_in 'Buscar', with: 'NATAL10-0002'
     click_on 'Pesquisar'

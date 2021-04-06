@@ -6,7 +6,7 @@ class DeletePromotionsTest < ApplicationSystemTestCase
     Promotion.create!(name: 'Halloween', description: 'Promoção de Halloween',
                       code: 'HALLOWEEN15', discount_rate: 15, coupon_quantity: 150,
                       expiration_date: '01/11/2022', user: user)
-    
+
     visit root_path
     click_on 'Promoções'
     click_on 'Halloween'

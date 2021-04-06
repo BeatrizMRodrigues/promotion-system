@@ -30,7 +30,7 @@ class ViewPromotionsTest < ApplicationSystemTestCase
                       description: 'Promoção de Cyber Monday',
                       code: 'CYBER15', discount_rate: 15,
                       expiration_date: '22/12/2033', user: user)
-             
+
     visit root_path
     click_on 'Promoções'
     click_on 'Cyber Monday'
@@ -56,7 +56,7 @@ class ViewPromotionsTest < ApplicationSystemTestCase
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033', user: user)
-    
+
     visit root_path
     click_on 'Promoções'
     click_on 'Voltar'
@@ -80,25 +80,25 @@ class ViewPromotionsTest < ApplicationSystemTestCase
   test 'do not view promotion link without login' do
     visit root_path
 
-   assert_no_link 'Promoções'
- end
+    assert_no_link 'Promoções'
+  end
 
- test 'do not view promotions using route without login' do
-   visit promotions_path
+  test 'do not view promotions using route without login' do
+    visit promotions_path
 
-   assert_current_path new_user_session_path
- end
+    assert_current_path new_user_session_path
+  end
 
- test 'do not view promotion details without login' do
-   user = User.create!(email: 'jane.doe@iugu.com.br', password: '123pfasaP*')
-   promotion = Promotion.create!(name: 'Natal', 
-                                   description: 'Promoção de Natal',
-                                   code: 'NATAL10', discount_rate: 10, 
-                                   coupon_quantity: 100,
-                                   expiration_date: '22/12/2033', user: user )
-   
-   visit promotion_path(promotion)
+  test 'do not view promotion details without login' do
+    user = User.create!(email: 'jane.doe@iugu.com.br', password: '123pfasaP*')
+    promotion = Promotion.create!(name: 'Natal',
+                                  description: 'Promoção de Natal',
+                                  code: 'NATAL10', discount_rate: 10,
+                                  coupon_quantity: 100,
+                                  expiration_date: '22/12/2033', user: user)
 
-   assert_current_path new_user_session_path
- end
+    visit promotion_path(promotion)
+
+    assert_current_path new_user_session_path
+  end
 end
