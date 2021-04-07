@@ -11,6 +11,7 @@ class Promotion < ApplicationRecord
 
   validates :name, :code, uniqueness: true
   SEARCHABLE_FIELDS = %w[name code description].freeze
+  
   def generate_coupons!
     return if coupons?
 
