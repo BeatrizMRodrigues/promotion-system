@@ -59,3 +59,5 @@ class CouponsTest < ApplicationSystemTestCase
     assert_no_text 'NATAL10-0003'
   end
 end
+
+#TODO: fazer o retorno de cupom inexistente
