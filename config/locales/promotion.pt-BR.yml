@@ -13,6 +13,7 @@ pt-BR:
         discount_rate: Desconto
         coupon_quantity: Quantidade de cupons
         expiration_date: Data de término
+        product_category: Categoria de Produtos
   promotions:
     show:
       generate_coupons: Gerar cupons
