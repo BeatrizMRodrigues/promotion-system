@@ -4,7 +4,7 @@ class Promotion < ApplicationRecord
   has_one :promotion_approval
   has_one :approver, through: :promotion_approval, source: :user
   has_many :promotion_categories
-  has_many :product_categories, through: :promotion_categories, source: :product_category
+  has_many :product_categories, through: :promotion_categories
 
   validates :name, :code, :discount_rate, :coupon_quantity,
             :expiration_date, presence: true
@@ -20,7 +20,6 @@ class Promotion < ApplicationRecord
     end
   end
 
-  # TODO: fazer testes para esse método
   def coupons?
     coupons.any?
   end

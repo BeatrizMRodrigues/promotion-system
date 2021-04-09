@@ -35,6 +35,10 @@
     <%= f.date_field :expiration_date %>
     </div>
     <div>
+    <%= f.label :product_category_id %>
+    <%= f.select :product_category_id, ProductCategory.all.collect {|product_category| [product_category.code, product_category.id] } %>
+    </div>
+    <div>
     <%= f.submit %>
     </div>
     <% end %>

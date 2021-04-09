@@ -52,7 +52,12 @@ class PromotionsController < ApplicationController
       .deliver_now
     redirect_to @promotion, notice: 'Promoção aprovada com sucesso'
   end
-  
+
+  def category
+    PromotionCategory.create(promotion: @promotion, product_category: @product_category)
+    redirect_to @promotion
+  end
+
   private
 
   def promotion_params

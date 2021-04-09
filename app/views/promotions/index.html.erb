@@ -19,7 +19,5 @@
     <dd><%= promotion.description %></dd>
     <dt>Desconto <small>em porcentagem</small></dt>
     <dd><%= number_to_percentage promotion.discount_rate, separator: ',', precision: 2  %></dd>
-    <dt>Categoria de Produtos</dt>
-    <dd><%= promotion.product_categories %></dd>
 </dl>
 <%end%>

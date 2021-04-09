@@ -14,7 +14,7 @@ class CategoryPromotionsTest < ApplicationSystemTestCase
     fill_in 'Desconto', with: '15'
     fill_in 'Quantidade de cupons', with: '90'
     fill_in 'Data de término', with: '22/12/2033'
-    fill_in 'Categoria de Produtos', with: product_category.name
+    select product_category.code
     click_on 'Criar Promoção'
 
     assert_current_path promotion_path(Promotion.last)
@@ -24,7 +24,7 @@ class CategoryPromotionsTest < ApplicationSystemTestCase
     assert_text 'CYBER15'
     assert_text '22/12/2033'
     assert_text '90'
-    assert_text producet_category.name
+    assert_text product_category.name
     assert_link 'Voltar'
   end
 end
