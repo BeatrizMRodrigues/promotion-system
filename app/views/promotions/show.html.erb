@@ -14,8 +14,12 @@
     <dd><%= l @promotion.expiration_date %></dd>
     <dt>Quantidade de cupons</dt>
     <dd><%= @promotion.coupon_quantity %></dd>
-    <dt>Quantidade de cupons</dt>
-    <dd><%= @promotion.product_category_ids %></dd>
+    <dt>Categorias</dt>
+    <dd><% @promotion.promotion_categories.each do |category| %>
+        <% category = ProductCategory.find(category.product_category_id) %>
+        <%= category.name %>
+        <% end %>
+    </dd>
 </dl>
 </div>
 

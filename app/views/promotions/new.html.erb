@@ -35,8 +35,8 @@
     <%= f.date_field :expiration_date %>
     </div>
     <div>
-    <%= f.label :product_category_id %>
-    <%= f.select :product_category_id, ProductCategory.all.collect {|product_category| [product_category.code, product_category.id] } %>
+    <%= f.label :promotion_categories %>
+    <%= f.collection_check_boxes :promotion_categories, ProductCategory.all, :id, :name, { checked: @promotion.promotion_categories.map(&:to_param) } %>
     </div>
     <div>
     <%= f.submit %>

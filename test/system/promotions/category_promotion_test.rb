@@ -14,7 +14,7 @@ class CategoryPromotionsTest < ApplicationSystemTestCase
     fill_in 'Desconto', with: '15'
     fill_in 'Quantidade de cupons', with: '90'
     fill_in 'Data de término', with: '22/12/2033'
-    select product_category.code
+    check  product_category.name
     click_on 'Criar Promoção'
 
     assert_current_path promotion_path(Promotion.last)

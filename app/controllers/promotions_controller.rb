@@ -15,6 +15,7 @@ class PromotionsController < ApplicationController
 
   def create
     @promotion = current_user.promotions.new(promotion_params)
+    @promotion.product_categories << find_categories
     if @promotion.save
       redirect_to @promotion
     else
@@ -53,10 +54,12 @@ class PromotionsController < ApplicationController
     redirect_to @promotion, notice: 'Promoção aprovada com sucesso'
   end
 
-  def category
-    PromotionCategory.create(promotion: @promotion, product_category: @product_category)
-    redirect_to @promotion
+  def find_categories
+    categories_params = params[:promotion][:promotion_categories]
+    categories_params.delete_at(0)
+    ProductCategory.find(categories_params)
   end
+ 
 
   private
 
@@ -64,7 +67,7 @@ class PromotionsController < ApplicationController
     params
       .require(:promotion)
       .permit(:name, :expiration_date, :description,
-              :discount_rate, :code, :coupon_quantity)
+              :discount_rate, :code, :coupon_quantity, :promotion_categories)
   end
 
   def set_promotion
