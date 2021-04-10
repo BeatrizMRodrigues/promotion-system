@@ -25,6 +25,9 @@
     <%= f.label :expiration_date, 'Data de término' %>
     <%= f.date_field :expiration_date %>
     </div>
+    <%= f.label :promotion_categories %>
+    <%= f.collection_check_boxes :promotion_categories, ProductCategory.all, :id, :name, { checked: @promotion.promotion_categories.map(&:to_param) } %>
+    </div>
     <div>
     <%= f.submit 'Salvar' %>
     </div>

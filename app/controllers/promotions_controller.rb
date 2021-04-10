@@ -27,6 +27,7 @@ class PromotionsController < ApplicationController
 
   def update
     @promotion.update(promotion_params)
+    @promotion.product_categories << find_categories
     redirect_to @promotion
   end
 
@@ -58,6 +59,7 @@ class PromotionsController < ApplicationController
     categories_params = params[:promotion][:promotion_categories]
     categories_params.delete_at(0)
     ProductCategory.find(categories_params)
+    
   end
  
 

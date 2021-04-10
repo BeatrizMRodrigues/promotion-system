@@ -3,9 +3,11 @@ require 'test_helper'
 class PromotionsFlow < ActionDispatch::IntegrationTest
   test 'can create a promotion' do
     login_user
+    @product_category = ProductCategory.create!(name: 'Anti Fraude', code: 'ANTIFRA')
+    @promotion_categories = PromotionCategory.create!(product_category: @product_category)
     post '/promotions',
          params: { promotion: { name: 'Natal', description: 'Promoção de natal', code: 'NATAL10', discount_rate: 10,
-                                coupon_quantity: 5, expiration_date: '25/12/2021' } }
+                                coupon_quantity: 5, expiration_date: '25/12/2021', promotion_categories: @promotion_category } }
 
     assert_redirected_to promotion_path(Promotion.last)
     follow_redirect!
