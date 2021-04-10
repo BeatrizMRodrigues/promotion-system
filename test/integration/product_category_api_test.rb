@@ -15,4 +15,11 @@ class ProductCategoryAPI < ActionDispatch::IntegrationTest
 
     assert_response :not_found
   end
+
+  test 'create a product category' do
+
+    post '/api/v1/product_categories', params: { product_category: { name: 'Anti Fraude', code: 'ANTIFRA' } }, as: :json
+
+    assert_response :success
+  end
 end
