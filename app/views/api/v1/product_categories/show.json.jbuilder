@@ -1,0 +1,1 @@
+json.set! :code, @product_category.code
