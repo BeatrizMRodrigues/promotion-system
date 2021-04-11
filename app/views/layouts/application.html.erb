@@ -10,24 +10,46 @@
     <%= javascript_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class='container' >
-  <nav>
-  <ul>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="<%= root_path %>">Promotion System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
     <% if user_signed_in? %>
-    <p> Olá! <%= current_user.username%> </p>
-      <li><%= link_to 'Promoções', promotions_path%></li>
-      <li><%= link_to 'Categorias', product_categories_path%></li>
-      <li><%= link_to 'Sair', destroy_user_session_path, method: :delete%></li>
+      <li class="nav-item"><%= link_to 'Promoções', promotions_path, class:"nav-link" %></li>
+      <li class="nav-item"><%= link_to 'Categorias', product_categories_path, class:"nav-link"%></li>
+      <li class="nav-item"><%= link_to 'Sair', destroy_user_session_path, method: :delete, class:"nav-link"%></li>
+      </ul>
+      <div class="navbar-text"> Olá <%= current_user.username%>! </div>
     <% else %>
-      <li><%= link_to 'Cadastrar', new_user_registration_path %></li>
-      <li><%= link_to 'Entrar', new_user_session_path%></li>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><%= link_to 'Cadastrar', new_user_registration_path, class:"nav-link" %></li>
+      <li class="nav-item"><%= link_to 'Entrar', new_user_session_path, class:"nav-link"%></li>
       <% end %>
       </ul>
   </nav>
-  <p><%= flash[:notice] %></p>
-  <p><%= flash[:alert] %></p>
 
-  
+  <div class="container">
+    <div class="padding">
+      <% if flash[:notice] %>
+    <div class="alert alert-info">
+       <%= flash[:notice] %>
+    </div>
+        <% end %>
+        <% if flash[:alert] %>
+    <div class="alert alert-danger">
+        <%= flash[:alert] %>
+    </div>
+        <% end %>
+  </div>
+    
     <%= yield %>
+  
+    </div>
   </body>
 </html>
