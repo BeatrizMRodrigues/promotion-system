@@ -4,7 +4,7 @@
 <%= link_to 'Registrar uma promoção', new_promotion_path, class:"btn btn-secondary"%>
 </div>
 <div class="input-group">
-<%= form_with url: search_promotions_path, method: :get do |f|%>
+<%= form_with url: search_promotions_path, id:"searchpromotion", method: :get, local: false do |f|%>
     <%= f.label :query, 'Buscar' %>
     <%= f.text_field :query %>
     <%= f.submit 'Pesquisar', class: 'btn btn-danger' %>
@@ -17,14 +17,21 @@
     <h4>Nenhuma promoção cadastrada</h4>
 <%end%>
 
-<% @promotions.each do |promotion| %>
-<dl class="card">
-<h3 class="card-header"><%= link_to promotion.name, promotion %></h3>
-
-    <dt>Descrição</dt>
-    <dd><%= promotion.description %></dd>
-    <dt>Desconto <small>em porcentagem</small></dt>
-    <dd><%= number_to_percentage promotion.discount_rate, separator: ',', precision: 2  %></dd>
-</dl>
-<%end%>
+<div id ="promotions">
+    <%= render @promotions %>
 </div>
+</div>
+
+<script>
+var searchForm = document.querySelector("#searchpromotion")
+var promotionDiv = document.querySelector("#promotions")
+
+searchForm.addEventListener("ajax:success", (event) => {
+    const [_data, _status, xhr] = event.detail
+    const promotions = JSON.parse(xhr.response)
+    promotionDiv.innerHTML = ""
+    promotions.forEach((promotion) => {
+        promotionDiv.insertAdjacentHTML("beforeend", promotion.name)
+    })
+})
+</script>

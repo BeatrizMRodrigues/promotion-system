@@ -1,0 +1,25 @@
+<% if @promotion.coupons?%>
+<%= form_with url: search_coupons_path, method: :get do |f|%>
+    <%= f.label :query, 'Buscar' %>
+    <%= f.text_field :query %>
+    <%= f.submit 'Pesquisar', class: 'btn btn-danger' %>
+<% end %>
+    <div>
+    <table>
+      <tr>
+        <th> Cupom </th>
+        <th> Ação </th>
+      </tr>
+      <tr>
+      <% @promotion.coupons.each do |coupon|%>
+        <td><p> <%= "#{coupon.code} #{'(desabilitado)' if coupon.disabled? }" %> </p></td>
+          <% if coupon.active? %>
+        <td><%= link_to 'Desabilitar', disable_coupon_path(coupon), method: :post %></td>
+          <% else %>
+        <td><%= link_to 'Habilitar', active_coupon_path(coupon), method: :post %></td>
+          <% end %>
+    </tr>
+    <% end %>
+  </table>
+  </div>
+<%end%>

@@ -1,55 +1,38 @@
 <%= link_to 'Voltar', promotions_path%>
 <%= link_to 'Editar promoção', edit_promotion_path%>
 <%= link_to 'Apagar promoção', promotion_path(@promotion), method: :delete%>
-<div>
-<h3><%= @promotion.name %></h3>
-<dl>
-    <dt><%= Promotion.human_attribute_name(:description)%></dt>
-    <dd><%= @promotion.description %></dd>
-    <dt><%= Promotion.human_attribute_name(:discount_rate)%> <small>em porcentagem</small></dt>
-    <dd><%= number_to_percentage @promotion.discount_rate, precision: 2  %></dd>
-    <dt>Código</dt>
-    <dd><%= @promotion.code %></dd>
-    <dt>Data de término</dt>
-    <dd><%= l @promotion.expiration_date %></dd>
-    <dt>Quantidade de cupons</dt>
-    <dd><%= @promotion.coupon_quantity %></dd>
-    <dt>Quantidade de cupons</dt>
-    <dd><%= @promotion.product_category_ids %></dd>
-</dl>
+
+<%= form_with url: account_detail_promotion_path(@promotion), id:"option-details", method: :get, local: false do |f|%>
+    <p><%= f.submit 'Account data' %></p>
+    <p><%= f.submit 'Account Approver' %></p>
+    <p><%= f.submit 'Account Coupons' %></p>
+<% end %>
+
+<div id="account-details">
+
 </div>
 
-<% if @promotion.approved? %>
-  <p>Aprovada por <%= @promotion.approver.email %></p>
-  <% if @promotion.coupons.empty? %>
-    <p><%= link_to t('.generate_coupons'), generate_coupons_promotion_path(@promotion), method: :post %></p>
-  <% end %>
-  <% elsif @promotion.can_approve?(current_user) %>
-    <%= link_to 'Aprovar', approve_promotion_path(@promotion), method: :post, data: { confirm: 'Tem certeza? Essa ação não pode ser desfeita'}%>
-<% end %>
 
-<% if @promotion.coupons?%>
-<%= form_with url: search_coupons_path, method: :get do |f|%>
-    <%= f.label :query, 'Buscar' %>
-    <%= f.text_field :query %>
-    <%= f.submit 'Pesquisar', class: 'btn btn-danger' %>
-<% end %>
-    <div>
-    <table>
-      <tr>
-        <th> Cupom </th>
-        <th> Ação </th>
-      </tr>
-      <tr>
-      <% @promotion.coupons.each do |coupon|%>
-        <td><p> <%= "#{coupon.code} #{'(desabilitado)' if coupon.disabled? }" %> </p></td>
-          <% if coupon.active? %>
-        <td><%= link_to 'Desabilitar', disable_coupon_path(coupon), method: :post %></td>
-          <% else %>
-        <td><%= link_to 'Habilitar', active_coupon_path(coupon), method: :post %></td>
-          <% end %>
-    </tr>
-    <% end %>
-  </table>
-  </div>
-<%end%>
+<script>
+var searchForm = document.querySelector("#option-details")
+var promotionDiv = document.querySelector("#account-details")
+
+searchForm.addEventListener("ajax:success", (event) => {
+    const [_data, _status, xhr] = event.detail
+    const promotion = JSON.parse(xhr.response)
+    const click = promotion.click
+    promotionDiv.innerHTML = ""
+    switch(click){
+      case 'Account data':
+        promotionDiv.insertAdjacentHTML("beforeend", "<%= j render 'promotions/partials/account_data' %>")
+        break;
+      case 'Account Approver':
+        promotionDiv.insertAdjacentHTML("beforeend", "<%= j render 'promotions/partials/account_approver' %>")
+        break;
+      case 'Account Coupons':
+        promotionDiv.insertAdjacentHTML("beforeend", "<%= j render 'promotions/partials/account_coupons' %>")
+    }
+})
+</script>
+
+

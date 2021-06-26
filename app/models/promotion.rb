@@ -33,9 +33,10 @@ class Promotion < ApplicationRecord
   end
 
   def self.search(query)
-    where(SEARCHABLE_FIELDS
-    .map { |field| "#{field} LIKE :query" }
-    .join(' OR '),
-          query: "%#{query}%")
+    where(
+      SEARCHABLE_FIELDS
+        .map { |field| "#{field} LIKE :query" }
+        .join(' OR '),
+      query: "%#{query}%")
   end
 end

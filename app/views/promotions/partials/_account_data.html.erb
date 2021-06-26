@@ -1,0 +1,15 @@
+<div>
+<h3><%= @promotion.name %></h3>
+<dl>
+    <dt><%= Promotion.human_attribute_name(:description)%></dt>
+    <dd><%= @promotion.description %></dd>
+    <dt><%= Promotion.human_attribute_name(:discount_rate)%> <small>em porcentagem</small></dt>
+    <dd><%= number_to_percentage @promotion.discount_rate, precision: 2  %></dd>
+    <dt>Código</dt>
+    <dd><%= @promotion.code %></dd>
+    <dt>Data de término</dt>
+    <dd><%= l @promotion.expiration_date %></dd>
+    <dt>Quantidade de cupons</dt>
+    <dd><%= @promotion.coupon_quantity %></dd>
+</dl>
+</div>

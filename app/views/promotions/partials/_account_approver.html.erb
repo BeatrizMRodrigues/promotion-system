@@ -1,0 +1,8 @@
+<% if @promotion.approved? %>
+  <p>Aprovada por <%= @promotion.approver.email %></p>
+  <% if @promotion.coupons.empty? %>
+    <p><%= link_to t('.generate_coupons'), generate_coupons_promotion_path(@promotion), method: :post %></p>
+  <% end %>
+  <% elsif @promotion.can_approve?(current_user) %>
+    <%= link_to 'Aprovar', approve_promotion_path(@promotion), method: :post, data: { confirm: 'Tem certeza? Essa ação não pode ser desfeita'}%>
+<% end %>

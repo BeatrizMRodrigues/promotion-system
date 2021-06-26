@@ -1,0 +1,9 @@
+
+<dl class="card">
+<h3 class="card-header"><%= link_to promotion.name, promotion %></h3>
+
+    <dt>Descrição</dt>
+    <dd><%= promotion.description %></dd>
+    <dt>Desconto <small>em porcentagem</small></dt>
+    <dd><%= number_to_percentage promotion.discount_rate, separator: ',', precision: 2  %></dd>
+</dl>

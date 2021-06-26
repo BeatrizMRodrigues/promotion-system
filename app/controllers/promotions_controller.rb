@@ -42,6 +42,7 @@ class PromotionsController < ApplicationController
   def search
     @term = params[:query]
     @promotions = Promotion.search(@term)
+    render json: @promotions
   end
 
   def approve
@@ -56,6 +57,13 @@ class PromotionsController < ApplicationController
   def category
     PromotionCategory.create(promotion: @promotion, product_category: @product_category)
     redirect_to @promotion
+  end
+
+  def account_detail
+    @promotion = Promotion.find(params[:id])
+    @click = params[:commit]
+    account_detail = {promotion: @promotion, click: @click}
+    render json: account_detail
   end
 
   private

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     post 'generate_coupons', on: :member
     post 'approve', on: :member
     get 'search', on: :collection
+    get 'account_detail', on: :member
   end
 
   resources :product_categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
